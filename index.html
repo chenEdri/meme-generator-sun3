@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEME-GENERATOR</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body onload="onInit()">
+    <div class="screen" onclick="onToggleMenu()"></div>
+    <header>
+        <div class="logo">
+            <img src="imgs/icons/logo.png">
+        </div>
+        <ul class = "main-nav flex clean-list">
+            <li class="gallery" onclick="window.scrollTo({
+                top: 450,
+                left: 100,
+                behavior: 'smooth'
+              });">gallery</li>
+            <!-- <li class="about" onclick="window.scrollTo({
+                top: 1000,
+                left: 100,
+                behavior: 'smooth'
+              });">about</li> -->
+              <li class ="my-memes" onclick="onOpenMyMemsModal()">My Memes</li>
+              <li class = "back" onclick ="onGoBackToMainPage()"><img src="imgs/icons/right-arrow.png" alt=""></li>
+        </ul>
+        <span class="mobile-menu" onclick="onToggleMenu()">☰</span>
+    </header>
+    <div class="keywords">
+        <div class="search-bar">
+            <img src="imgs/icons/search-icon.png" />
+            <input class="search" type="text" id="search" placeholder="Enter search keyword" onkeyup="onSortByKey(this.value)"/>
+        </div>
+        <div class="favorite-search-text" id="keywords-bar"></div>
+    </div>
+    <div class="main-container">
+        <div class="pic-platform">
+            <div class="main-pic-container">
+            </div>
+        </div>
+        <div class= "my-meme-modal">
+            <div class="main-meme-cointainer"></div>
+        </div>
+        <div class="meme-moadl">
+            <div class="main-canvas-cointainer">
+                <div class="canvas-container">
+                    <canvas id="myCanvas" dir="auto" height="540" width="550"
+                     onmousedown="onHandleMouseDown(event)"
+                     onmousemove="onHandleMouseMove(event)"
+                     onmouseout="onHandleMouseOut(event)"
+                     onmouseup="onHandleMouseUp(event)"
+                     ontouchmove="onHandleTouchMove(event)">
+                     
+                </canvas>
+                </div>
+                <div class="control-box">
+                    <div class="text-addit">
+                        <input class="text" type="text" id="meme-text" placeholder="tap here!" onclick="onAddTextBox()"
+                            onkeyup="onAddletter(this.value)" />
+                        <span class="btn img clear" id="clear" onclick="onDeleteText()"><img src="imgs/icons/trash.png"/></span>
+                        <span class="btn add" id="add-text-line" onclick="onAddTextLine()"><img src="imgs/icons/add.png"/></span>
+                        <a herf="#" class ="btn save" id ="save" onclick="onSaveImg(this)"><img src="imgs/icons/save.png" alt=""></a>
+                        <span class="btn move-up" id="move-up" onclick="onMoveUp()"><img src="imgs/icons/dbl arrow.png"/></span>
+                        <span class="btn move-down" id="move-down" onclick="onMoveDown()"><img src="imgs/icons/dbl arrow.png"/></span>
+                        <span class="btn switch-up" id="switch-up" onclick="onSwitchUp()"><img src="imgs/icons/arrow.jpg"/></span>
+                        <span class="btn switch-down" id="swich-down" onclick="onSwitchDown()"><img src="imgs/icons/arrow.jpg"/></span>
+                        <span class="btn toggle-switch" id="toggle-switch" onclick="onToggleSwitch()"><img src="imgs/icons/up-and-down-opposite-double-arrows-side-by-side.png"/></span>
+                    </div>
+                    <div class="font-addit">
+                        <select class="font-type" id="font-type" onchange="onChangeFontType(this.value)">
+                            <option class="impact">impact</option>
+                            <option class="ariel">Ariel</option>
+                            <option class ="calibri">Calibri</option>
+                            <option class ="Eurofurence">Eurofurence</option>
+                            <option class="Lato-Regular">Lato-Regular</option>
+                        </select>
+                        <input class="btn font-color" type="color" id="font-color"onchange="onChangeTextColor(this.value)"></input>
+                        <span class="btn font-increase" id="font-increase"
+                            onclick="onIncreaseFont()"><img src="imgs/icons/increase font - icon.png"/></span>
+                        <span class="btn font-decrease" id="font-decrease" onclick="onDecreaseFont()"><img src="imgs/icons/decrease font - icon.png"/></span>
+                        <span class="btn font-right" id="font-right" onclick="onTextRight()"><img src="imgs/icons/align-to-right.png"/></span>
+                        <span class="btn font-middle" id="font-middle" onclick="onTextMiddle()"><img src="imgs/icons/center-text-alignment.png"/></span>
+                        <span class="btn font-left" id="font-left" onclick="onTextLeft()"><img src="imgs/icons/align-to-left.png"/></span>
+                        <div class = "stickers-container"></div>
+                        <form class="form-fb" action="" method="POST" enctype="multipart/form-data" onsubmit="onShareToFB(this , event)">
+                            <input name="img" id="imgData" type="hidden" />
+                            <button class="btn" type="submit"><img src="imgs/icons/fcbicon.png"></button>
+                            <div class="share-container"></div>
+                          </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-logo">MEMEGEN</div>
+        <div class="rights">© all rights reserved 2020</div>
+    </footer>
+
+    <script src=js/utisl.js></script>
+    <script src="js/upload-save-service.js"></script>
+    <script src=js/front-page-service.js></script>
+    <script src=js/meme-controller.js></script>
+    <script src=js/meme-service.js></script>
+    <script src=js/meme-mouse-events-service.js></script>
+
+</body>
+
+</html>
